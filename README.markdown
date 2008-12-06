@@ -23,12 +23,13 @@ Usage
 -----
 
 Just call the acts\_as\_flying\_saucer method inside the controller you want to enable to generate pdf documents.
-Then you can call the render_pdf method. 
+Then you can call the render\_pdf method. 
 It accepts the same options as ActionController::Base#render plus the following ones:
   
 * :pdf\_file - absolute path for the generated pdf file.
 * :send\_file - sends the generated pdf file to the browser. It's the hash the ActionController::Streaming#send_file method will receive.
 
+    
     class FooController < ActionController::Base
       acts_as_flying_saucer
     
