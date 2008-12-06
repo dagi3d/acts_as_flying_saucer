@@ -50,7 +50,7 @@ Examples
     # in the temp path with a filename based on its content md5 digest
     render_pdf :file => '/foo/bar/pdf.html.rb'
   
-    # renders the templated located at 'app/views/foo.html.erb' and saves the pdf
+    # renders the template located at 'app/views/foo.html.erb' and saves the pdf
     # in '/www/docs/foo.pdf'
     render_pdf :template => 'foo', :pdf_file => '/www/docs/foo.pdf'
   
