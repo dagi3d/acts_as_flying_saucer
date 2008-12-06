@@ -32,14 +32,15 @@ It accepts the same options as ActionController::Base#render plus the following 
 * \:send\_file - sends the generated pdf file to the browser. It's the hash the ActionController::Streaming#send\_file method will receive.
 
 
+
     
-    class FooController < ActionController::Base
-      acts_as_flying_saucer
+      class FooController < ActionController::Base
+        acts_as_flying_saucer
     
-      def create
-        render_pdf :template => 'foo/pdf_template'
-      end
-    end 
+        def create
+          render_pdf :template => 'foo/pdf_template'
+        end
+      end 
 
   
 Examples
