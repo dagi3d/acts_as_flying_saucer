@@ -1,21 +1,31 @@
-import gnu.getopt.Getopt;
-import gnu.getopt.LongOpt;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+
+import org.xhtmlrenderer.pdf.ITextRenderer;
 
 public class Xhtml2Pdf
 {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
+       
+        String input = args[0];
+        String output = args[1];
+        String url = new File(input).toURI().toURL().toString();
         
-        String inputFile = args[0];
-        String url = new File(inputFile).toURI().toURL().toString();
-       
-        String outputFile = args[1];
-       
-        OutputStream os = new FileOutputStream(outputFile);
+        /*
+        DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+        Reader reader = new StringReader(input);
+        InputSource source = new InputSource(reader);
+        Document doc = builder.parse(source);
+        */
+        
+        OutputStream os = new FileOutputStream(output);
 
         ITextRenderer renderer = new ITextRenderer();
         renderer.setDocument(url);
         renderer.layout();
         renderer.createPDF(os);
+        os.close();
 
 
     }

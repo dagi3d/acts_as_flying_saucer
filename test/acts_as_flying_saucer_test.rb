@@ -13,7 +13,7 @@ class FooController < ActionController::Base
   acts_as_flying_saucer
   
   def show
-    render :pdf_template => 'foo'
+    render_pdf :template => 'foo'
   end
   
 end

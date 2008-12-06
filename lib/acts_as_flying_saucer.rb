@@ -17,8 +17,28 @@ module ActsAsFlyingSaucer
   # Xhtml2Pdf
   #
   class Xhtml2Pdf
-    def self.write_pdf
-      puts File.expand_path(File.dirname(__FILE__))
+    def self.write_pdf(html)
+      
+      tmp_dir = ActsAsFlyingSaucer::Config.options[:tmp_path]
+      input_file = tmp_dir + Time.new.to_i.to_s + ".html"
+      
+      File.open(input_file, 'w') do |file|
+        file << html
+      end
+      
+      output_file = "/Users/dagi3d/Desktop/foo.pdf"
+      cp_separator = ActsAsFlyingSaucer::Config.options[:classpath_separator]
+      
+      java_dir = File.join(File.expand_path(File.dirname(__FILE__)), "java")
+      
+      class_path = ".:#{java_dir}/bin"
+
+      Dir.glob("#{java_dir}/jar/*.jar") do |jar|
+        class_path << "#{cp_separator}#{jar}"
+      end
+
+      command = "java -cp #{class_path} Xhtml2Pdf #{input_file} #{output_file}"
+      system(command)
     end
   end
   
@@ -28,9 +48,6 @@ module ActsAsFlyingSaucer
     
     def acts_as_flying_saucer
       self.send(:include, ActsAsFlyingSaucer::InstanceMethods)
-      class_eval do 
-        alias_method_chain :render, :pdf
-      end
     end
     
   end
@@ -38,18 +55,14 @@ module ActsAsFlyingSaucer
   # InstanceMethods
   #
   module InstanceMethods
-=begin
+  
     def render_pdf(options = {})
       html = render_to_string options
       # saving the file
-      ActsAsFlyingSaucer::Xhtml2Pdf.write_pdf
+      ActsAsFlyingSaucer::Xhtml2Pdf.write_pdf(html)
     end
-=end
+
     
-    def render_with_pdf(options = nil, extra_options = {}, &block)
-      
-      render_without_pdf(options, extra_options, &block)
-    end
     
   end
 end
