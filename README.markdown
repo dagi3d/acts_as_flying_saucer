@@ -92,7 +92,7 @@ You have to specify the print media for your styles in order to render the view 
 Configuration
 -------------
 
-These are the default settings which can be overwriten in your enviroment configuration file:
+These are the default settings which can be overwritten in your enviroment configuration file:
 
     ActsAsFlyingSaucer::Config.options = {
       :java_bin => "java",          # java binary
