@@ -10,7 +10,7 @@ Install
 
 Grab the last version from Github:
 
-  ./script/plugin/install git://github.com/dagi3d/acts_as_flying_saucer.git
+    ./script/plugin/install git://github.com/dagi3d/acts_as_flying_saucer.git
 
 
 Requirements
