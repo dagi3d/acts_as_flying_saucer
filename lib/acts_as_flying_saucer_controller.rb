@@ -60,7 +60,7 @@ module ActsAsFlyingSaucer
             :x_sendfile => true,
           }
           
-          send_file_options.merge(options[:send_file]) if options.respond_to?(:merge)
+          send_file_options.merge!(options[:send_file]) if options.respond_to?(:merge)
         
           send_file(output_file, send_file_options)
         end
