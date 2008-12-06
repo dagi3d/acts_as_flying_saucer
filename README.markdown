@@ -46,9 +46,9 @@ It accepts the same options as ActionController::Base#render plus the following 
 Examples
 --------
   
-    # Renders the template located at '/foo/bar/pdf.html.rb' and stores the pdf 
+    # Renders the template located at '/foo/bar/pdf.html.erb' and stores the pdf 
     # in the temp path with a filename based on its content md5 digest
-    render_pdf :file => '/foo/bar/pdf.html.rb'
+    render_pdf :file => '/foo/bar/pdf.html.erb'
   
     # renders the template located at 'app/views/foo.html.erb' and saves the pdf
     # in '/www/docs/foo.pdf'
