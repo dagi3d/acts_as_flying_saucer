@@ -104,7 +104,7 @@ These are the default settings which can be overwritten in your enviroment confi
 Roadmap
 -------
 
-* Write a java application that listens to a port and sends the rendered view through sockets so there is no need to lauch the jvm everytime a new pdf is generated
+* Write a java application that listens to a port and sends the rendered view through sockets so there is no need to launch the jvm everytime a new pdf is generated
 * Write a cache system for the pdf's
 * Write some tests... (yes, I know it should be the first thing I should have done...)
 
