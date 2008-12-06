@@ -28,8 +28,8 @@ Then you can call the render\_pdf method.
 It accepts the same options as ActionController::Base#render plus the following ones:
   
 
-\:pdf\_file - absolute path for the generated pdf file.
-\:send\_file - sends the generated pdf file to the browser. It's the hash the ActionController::Streaming#send\_file method will receive.
+* \:pdf\_file - absolute path for the generated pdf file.
+* \:send\_file - sends the generated pdf file to the browser. It's the hash the ActionController::Streaming#send\_file method will receive.
 
 
     
