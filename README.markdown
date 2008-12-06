@@ -1,22 +1,26 @@
-== ActsAsFlyingSaucer
+ActsAsFlyingSaucer
+==================
 
 ActsAsFlyingSaucer is a Ruby On Rails plugin that allows to save xhtml documents into pdf files using the Flying Saucer[1] java library.
 
 [1] https://xhtmlrenderer.dev.java.net/
 
-== Install
+Install
+-------
 
 Grab the last version from Github:
 
   ./script/plugin/install git://github.com/dagi3d/acts_as_flying_saucer.git
 
 
-== Requirements
+Requirements
+------------
 
 JDK 1.5.x or 1.6.x
 It was tested under Mac OS X Leopard but it should work on any operating system with a compatible Java Virtual Machine
 
-== Usage
+Usage
+-----
 
 Just call the acts_as_flying_saucer method inside the controller you want to enable to generate pdf documents.
 Then you can call the render_pdf method. It accepts the same options as ActionController::Base#render plus the following ones:
@@ -33,7 +37,8 @@ Then you can call the render_pdf method. It accepts the same options as ActionCo
     end
   end 
   
-== Examples
+Examples
+--------
   
   # Renders the template located at '/foo/bar/pdf.html.rb' and stores the pdf 
   # in the temp path with a filename based on its content md5 digest
@@ -78,7 +83,8 @@ IMPORTANT:
 
 You have to specify the print media for your styles in order to render the view correctly when generating the pdf document. 
   
-== Configuration
+Configuration
+-------------
 
 These are the default settings which can be overwriten in your enviroment configuration file:
 
@@ -89,7 +95,8 @@ These are the default settings which can be overwriten in your enviroment config
   }
 
 
-== Roadmap
+Roadmap
+-------
 
 * Write a java application that listens to a port and sends the rendered view through sockets so there is no need to lauch the jvm everytime a new pdf is generated
 * Write a cache system for the pdf's
