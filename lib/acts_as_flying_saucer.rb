@@ -54,6 +54,17 @@ module ActsAsFlyingSaucer
       })
 
       ActsAsFlyingSaucer::Xhtml2Pdf.write_pdf(generate_options)
+      
+      # sending the file to the client
+      if options.has_key?(:send_file)
+        
+        send_file_options = {
+          :filename => File.basename(output_file),
+          :x_sendfile => true,
+        }.merge(options[:send_file])
+        
+        send_file(output_file, send_file_options)
+      end
     end
 
   end

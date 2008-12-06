@@ -6,7 +6,7 @@ class FooController < ActionController::Base
   acts_as_flying_saucer
   
   def show
-    render_pdf :template => 'foo'
+    render_pdf :template => 'foo', :pdf_file => "/Users/dagi3d/Desktop/foo.pdf"
   end
   
 end
