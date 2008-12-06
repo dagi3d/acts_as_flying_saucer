@@ -1,4 +1,4 @@
-acts\_\as\_flying\_saucer
+acts\_as\_flying\_saucer
 =====================
 
 acts\_as\_flying\_saucer is a Ruby On Rails plugin that allows to save rendered views as pdf documents using the [Flying Saucer][1] java library.
