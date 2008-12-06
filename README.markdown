@@ -23,13 +23,13 @@ Usage
 -----
 
 Just call the acts\_as\_flying\_saucer method inside the controller you want to enable to generate pdf documents.
-Then you can call the render_pdf method. It accepts the same options as ActionController::Base#render plus the following ones:
+Then you can call the render_pdf method. 
+It accepts the same options as ActionController::Base#render plus the following ones:
   
-* :pdf_file - absolute path for the generated pdf file.
-* :send_file - sends the generated pdf file to the browser. It's the hash the ActionController::Streaming#send_file method will receive.
+* :pdf\_file - absolute path for the generated pdf file.
+* :send\_file - sends the generated pdf file to the browser. It's the hash the ActionController::Streaming#send_file method will receive.
 
     class FooController < ActionController::Base
-
       acts_as_flying_saucer
     
       def create
@@ -77,7 +77,7 @@ View rendered as pdf:
     <%= image_tag("rails.png") %>
     # <img alt="Rails" src="file:///Users/dagi3d/www/acts_as_flying_saucer/public//images/rails.png" />
   
-If you need to distinguis if the view is being rendered in the browser or as a pdf, you can use the @pdf_mode variable, whose value will be set to :create
+If you need to distinguish if the view is being rendered in the browser or as a pdf, you can use the @pdf_mode variable, whose value will be set to :create
 when generating the pdf version
 
 *IMPORTANT:*
