@@ -1,9 +1,9 @@
 ActsAsFlyingSaucer
 ==================
 
-ActsAsFlyingSaucer is a Ruby On Rails plugin that allows to save xhtml documents into pdf files using the Flying Saucer[1] java library.
+ActsAsFlyingSaucer is a Ruby On Rails plugin that allows to save xhtml documents into pdf files using the [Flying Saucer][1] java library.
 
-[1] https://xhtmlrenderer.dev.java.net/
+[1]: https://xhtmlrenderer.dev.java.net/
 
 Install
 -------
@@ -22,35 +22,36 @@ It was tested under Mac OS X Leopard but it should work on any operating system 
 Usage
 -----
 
-Just call the acts_as_flying_saucer method inside the controller you want to enable to generate pdf documents.
+Just call the acts\_as\_flying\_saucer method inside the controller you want to enable to generate pdf documents.
 Then you can call the render_pdf method. It accepts the same options as ActionController::Base#render plus the following ones:
   
 * :pdf_file - absolute path for the generated pdf file.
 * :send_file - sends the generated pdf file to the browser. It's the hash the ActionController::Streaming#send_file method will receive.
 
-  class FooController < ActionController::Base
+    class FooController < ActionController::Base
 
-    acts_as_flying_saucer
+      acts_as_flying_saucer
     
-    def create
-      render_pdf :template => 'foo/pdf_template'
-    end
-  end 
+      def create
+        render_pdf :template => 'foo/pdf_template'
+      end
+    end 
+
   
 Examples
 --------
   
-  # Renders the template located at '/foo/bar/pdf.html.rb' and stores the pdf 
-  # in the temp path with a filename based on its content md5 digest
-  render_pdf :file => '/foo/bar/pdf.html.rb'
+    # Renders the template located at '/foo/bar/pdf.html.rb' and stores the pdf 
+    # in the temp path with a filename based on its content md5 digest
+    render_pdf :file => '/foo/bar/pdf.html.rb'
   
-  # renders the templated located at 'app/views/foo.html.erb' and saves the pdf
-  # in '/www/docs/foo.pdf'
-  render_pdf :template => 'foo', :pdf_file => '/www/docs/foo.pdf'
+    # renders the templated located at 'app/views/foo.html.erb' and saves the pdf
+    # in '/www/docs/foo.pdf'
+    render_pdf :template => 'foo', :pdf_file => '/www/docs/foo.pdf'
   
-  # renders the 'app/views/foo.html.erb' template, saves the pdf in the temp path
-  # and sends it to the browser with the name 'bar.pdf'
-  render_pdf :template => 'foo', :send_file => { :filename => 'bar.pdf' }
+    # renders the 'app/views/foo.html.erb' template, saves the pdf in the temp path
+    # and sends it to the browser with the name 'bar.pdf'
+    render_pdf :template => 'foo', :send_file => { :filename => 'bar.pdf' }
   
   
 Easy as pie
@@ -60,26 +61,26 @@ This is done automagically during the pdf generation so there is no need to touc
 
 View rendered in the browser:
 
-  <%= stylesheet_link_tag("styles.css", :media => "screen,print") %>
-  #<link href="/stylesheets/styles.css?1228586784" media="screen,print" rel="stylesheet" type="text/css" />
+    <%= stylesheet_link_tag("styles.css", :media => "screen,print") %>
+    #<link href="/stylesheets/styles.css?1228586784" media="screen,print" rel="stylesheet" type="text/css" />
 
 
-  <%= image_tag("rails.png") %>
-  # <img alt="Rails" src="/images/rails.png?1228433051" />
+    <%= image_tag("rails.png") %>
+    # <img alt="Rails" src="/images/rails.png?1228433051" />
   
 View rendered as pdf:
 
-  <%= stylesheet_link_tag("styles.css", :media => "screen,print") %>
-  #<link href="file:///Users/dagi3d/www/acts_as_flying_saucer/public/stylesheets/styles.css" media="screen,print" rel="stylesheet" type="text/css" />
+    <%= stylesheet_link_tag("styles.css", :media => "screen,print") %>
+    #<link href="file:///Users/dagi3d/www/acts_as_flying_saucer/public/stylesheets/styles.css" media="screen,print" rel="stylesheet" type="text/css" />
 
 
-  <%= image_tag("rails.png") %>
-  # <img alt="Rails" src="file:///Users/dagi3d/www/acts_as_flying_saucer/public//images/rails.png" />
+    <%= image_tag("rails.png") %>
+    # <img alt="Rails" src="file:///Users/dagi3d/www/acts_as_flying_saucer/public//images/rails.png" />
   
 If you need to distinguis if the view is being rendered in the browser or as a pdf, you can use the @pdf_mode variable, whose value will be set to :create
 when generating the pdf version
 
-IMPORTANT:
+*IMPORTANT:*
 
 You have to specify the print media for your styles in order to render the view correctly when generating the pdf document. 
   
@@ -88,11 +89,11 @@ Configuration
 
 These are the default settings which can be overwriten in your enviroment configuration file:
 
-  ActsAsFlyingSaucer::Config.options = {
-    :java_bin => "java",          # java binary
-    :classpath_separator => ':',  # classpath separator. unixes system use ':' and windows ';'
-    :tmp_path => "/tmp",          # path where temporary files will be stored
-  }
+    ActsAsFlyingSaucer::Config.options = {
+      :java_bin => "java",          # java binary
+      :classpath_separator => ':',  # classpath separator. unixes system use ':' and windows ';'
+      :tmp_path => "/tmp",          # path where temporary files will be stored
+    }
 
 
 Roadmap
