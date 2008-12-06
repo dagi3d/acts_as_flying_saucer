@@ -50,7 +50,33 @@ Then you can call the render_pdf method. It accepts the same options as ActionCo
   
 Easy as pie
 
-While converting the xhtml document into a pdf, the css stylesheets should be referenced
+While converting the xhtml document into a pdf, the css stylesheets and images should be referenced as local resources. 
+This is done automagically during the pdf generation so there is no need to touch anything:
+
+View rendered in the browser:
+
+  <%= stylesheet_link_tag("styles.css", :media => "screen,print") %>
+  #<link href="/stylesheets/styles.css?1228586784" media="screen,print" rel="stylesheet" type="text/css" />
+
+
+  <%= image_tag("rails.png") %>
+  # <img alt="Rails" src="/images/rails.png?1228433051" />
+  
+View rendered as pdf:
+
+  <%= stylesheet_link_tag("styles.css", :media => "screen,print") %>
+  #<link href="file:///Users/dagi3d/www/acts_as_flying_saucer/public/stylesheets/styles.css" media="screen,print" rel="stylesheet" type="text/css" />
+
+
+  <%= image_tag("rails.png") %>
+  # <img alt="Rails" src="file:///Users/dagi3d/www/acts_as_flying_saucer/public//images/rails.png" />
+  
+If you need to distinguis if the view is being rendered in the browser or as a pdf, you can use the @pdf_mode variable, whose value will be set to :create
+when generating the pdf version
+
+IMPORTANT:
+
+You have to specify the print media for your styles in order to render the view correctly when generating the pdf document. 
   
 = Configuration
 
@@ -65,8 +91,9 @@ These are the default settings which can be overwriten in your enviroment config
 
 = Roadmap
 
-  Write some tests... (yes I know it should be the first thing I should have done...)
-
+* Write a java application that listens to a port and sends the rendered view through sockets so there is no need to lauch the jvm everytime a new pdf is generated
+* Write a cache system for the pdf's
+* Write some tests... (yes, I know it should be the first thing I should have done...)
 
 
 
