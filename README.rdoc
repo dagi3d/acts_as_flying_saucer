@@ -1,6 +1,8 @@
 = ActsAsFlyingSaucer
 
-ActsAsFlyingSaucer is a Ruby On Rails plugin that allows to save xhtml documents into pdf files using the Flying Saucer java library.
+ActsAsFlyingSaucer is a Ruby On Rails plugin that allows to save xhtml documents into pdf files using the Flying Saucer[1] java library.
+
+[1] https://xhtmlrenderer.dev.java.net/
 
 = Install
 
@@ -18,18 +20,37 @@ It was tested under Mac OS X Leopard but it should work on any operating system 
 
 Just call the acts_as_flying_saucer method inside the controller you want to enable to generate pdf documents.
 Then you can call the render_pdf method. It accepts the same options as ActionController::Base#render plus the following ones:
-
+  
+* :pdf_file - absolute path for the generated pdf file.
+* :send_file - sends the generated pdf file to the browser. It's the hash the ActionController::Streaming#send_file method will receive.
 
   class FooController < ActionController::Base
 
     acts_as_flying_saucer
     
     def create
-      render_pdf :template => 'foo/pdf_template.hml.erb'
+      render_pdf :template => 'foo/pdf_template'
     end
   end 
   
+== Examples
+  
+  # Renders the template located at '/foo/bar/pdf.html.rb' and stores the pdf 
+  # in the temp path with a filename based on its content md5 digest
+  render_pdf :file => '/foo/bar/pdf.html.rb'
+  
+  # renders the templated located at 'app/views/foo.html.erb' and saves the pdf
+  # in '/www/docs/foo.pdf'
+  render_pdf :template => 'foo', :pdf_file => '/www/docs/foo.pdf'
+  
+  # renders the 'app/views/foo.html.erb' template, saves the pdf in the temp path
+  # and sends it to the browser with the name 'bar.pdf'
+  render_pdf :template => 'foo', :send_file => { :filename => 'bar.pdf' }
+  
+  
 Easy as pie
+
+While converting the xhtml document into a pdf, the css stylesheets should be referenced
   
 = Configuration
 
@@ -41,8 +62,10 @@ These are the default settings which can be overwriten in your enviroment config
     :tmp_path => "/tmp",          # path where temporary files will be stored
   }
 
+
 = Roadmap
 
+  Write some tests... (yes I know it should be the first thing I should have done...)
 
 
 
