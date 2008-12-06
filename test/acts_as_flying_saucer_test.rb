@@ -1,15 +1,34 @@
 require 'test_helper'
 
 
-class Foo < ActionController::Base
+ActsAsFlyingSaucer::Config.options = {
+  :java_bin => "java",
+  :classpath_separator => ':',
+  :tmp_path => "/tmp",
+  :run_mode => :once
+}
+
+class FooController < ActionController::Base
   
   acts_as_flying_saucer
+  
+  def show
+    render :pdf_template => 'foo'
+  end
   
 end
 
 class ActsAsFlyingSaucerTest < ActiveSupport::TestCase
-  # Replace this with your real tests.
-  test "the truth" do
-    assert true
+  
+  def setup
+    @controller = FooController.new
+    @request = ActionController::TestRequest.new
+    @response = ActionController::TestResponse.new 
   end
+  
+  def test_show
+    get :show
+    assert_response :success
+  end
+  
 end
