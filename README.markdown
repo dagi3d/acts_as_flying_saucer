@@ -110,4 +110,5 @@ Roadmap
 
 
 
-Copyright (c) 2008-2009 Borja Martín Sánchez de Vivar <borjam@dagi3d.net> - <http://dagi3d.net>, released under the MIT license
+Copyright (c) 2008-2009 Borja Martín Sánchez de Vivar <borjamREMOVETHIS@dagi3d.net> - <http://dagi3d.net>, released under the MIT license
+
