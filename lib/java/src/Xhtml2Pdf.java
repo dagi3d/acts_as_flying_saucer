@@ -12,12 +12,6 @@ public class Xhtml2Pdf
         String output = args[1];
         String url = new File(input).toURI().toURL().toString();
         
-        /*
-        DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-        Reader reader = new StringReader(input);
-        InputSource source = new InputSource(reader);
-        Document doc = builder.parse(source);
-        */
         
         OutputStream os = new FileOutputStream(output);
 
@@ -26,7 +20,5 @@ public class Xhtml2Pdf
         renderer.layout();
         renderer.createPDF(os);
         os.close();
-
-
     }
 }

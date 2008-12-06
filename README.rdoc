@@ -1,0 +1,36 @@
+= ActsAsFlyingSaucer
+
+ActsAsFlyingSaucer is a Ruby On Rails plugin that allows to save xhtml documents into pdf files using the Flying Saucer java library.
+
+= Usage:
+
+Just call the acts_as_flying_saucer method inside the controller you want to enable to generate pdf documents.
+Then you can call the render_pdf method. It accepts the same options as ActionController::Base#render plus the following ones:
+
+
+  class FooController < ActionController::Base
+
+    acts_as_flying_saucer
+    
+    def create
+      render_pdf :template => 'foo/pdf_template.hml.erb'
+    end
+  end
+  
+= Configuration
+
+These are the default settings which can be overwriten in your enviroment configuration file:
+
+  ActsAsFlyingSaucer::Config.options = {
+    :java_bin => "java",          # java binary
+    :classpath_separator => ':',  # classpath separator. unixes system use ':' and windows ';'
+    :tmp_path => "/tmp",          # path to store the temporary files
+  }
+
+= Roadmap
+
+
+
+
+
+Copyright (c) 2008 Borja Martín <borjam@dagi3d.net> - http://dagi3d.net, released under the MIT license

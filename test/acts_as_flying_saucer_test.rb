@@ -1,13 +1,6 @@
 require 'test_helper'
 
 
-ActsAsFlyingSaucer::Config.options = {
-  :java_bin => "java",
-  :classpath_separator => ':',
-  :tmp_path => "/tmp",
-  :run_mode => :once
-}
-
 class FooController < ActionController::Base
   
   acts_as_flying_saucer
