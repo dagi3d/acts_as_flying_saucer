@@ -1,7 +1,7 @@
 ActsAsFlyingSaucer
 ==================
 
-ActsAsFlyingSaucer is a Ruby On Rails plugin that allows to save xhtml documents into pdf files using the [Flying Saucer][1] java library.
+ActsAsFlyingSaucer is a Ruby On Rails plugin that allows to save rendered views as pdf documents using the [Flying Saucer][1] java library.
 
 [1]: https://xhtmlrenderer.dev.java.net/
 
