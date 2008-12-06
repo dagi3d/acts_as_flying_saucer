@@ -82,7 +82,7 @@ View rendered as pdf:
     <%= image_tag("rails.png") %>
     # <img alt="Rails" src="file:///Users/dagi3d/www/acts_as_flying_saucer/public//images/rails.png" />
   
-If you need to distinguish if the view is being rendered in the browser or as a pdf, you can use the @pdf_mode variable, whose value will be set to :create
+If you need to distinguish if the view is being rendered in the browser or as a pdf, you can use the @pdf\_mode variable, whose value will be set to :create
 when generating the pdf version
 
 *IMPORTANT:*
