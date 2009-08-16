@@ -31,6 +31,11 @@ module ActsAsFlyingSaucer
       #
       def render_pdf(options = {})
         
+        host = ActionController::Base.asset_host
+        ActionController::Base.asset_host = request.protocol + request.host_with_port if host.blank?
+        
+        logger.debug("#{host} - #{host.nil?} - #{ActionController::Base.asset_host}")
+        
         self.pdf_mode = :create
         html = render_to_string options
         self.pdf_mode = nil
@@ -51,13 +56,15 @@ module ActsAsFlyingSaucer
         })
 
         ActsAsFlyingSaucer::Xhtml2Pdf.write_pdf(generate_options)
+        # restoring the host
+        ActionController::Base.asset_host = host
       
         # sending the file to the client
         if options[:send_file]
         
           send_file_options = {
-            :filename => File.basename(output_file),
-            :x_sendfile => true,
+            :filename => File.basename(output_file)
+            #:x_sendfile => true,
           }
           
           send_file_options.merge!(options[:send_file]) if options.respond_to?(:merge)

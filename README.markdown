@@ -28,26 +28,27 @@ Then you can call the render\_pdf method.
 It accepts the same options as ActionController::Base#render plus the following ones:
   
 
-* \:pdf\_file - absolute path for the generated pdf file.
-* \:send\_file - sends the generated pdf file to the browser. It's the hash the ActionController::Streaming#send\_file method will receive.
-
-
-
+:pdf\_file - absolute path for the generated pdf file.
+  
+:send\_file - sends the generated pdf file to the browser. It's the hash the ActionController::Streaming#send\_file method will receive.  
+             
+            
+          
+    class FooController < ActionController::Base
+      acts_as_flying_saucer
     
-      class FooController < ActionController::Base
-        acts_as_flying_saucer
-    
-        def create
-          render_pdf :template => 'foo/pdf_template'
-        end
-      end 
+      def create
+        render_pdf :template => 'foo/pdf_template'
+      end
+    end
+   
 
   
 Examples
 --------
   
     # Renders the template located at '/foo/bar/pdf.html.erb' and stores the pdf 
-    # in the temp path with a filename based on its content md5 digest
+    # in the temp path with a filename based on its md5 digest
     render_pdf :file => '/foo/bar/pdf.html.erb'
   
     # renders the template located at 'app/views/foo.html.erb' and saves the pdf
@@ -61,13 +62,13 @@ Examples
   
 Easy as pie
 
-While converting the xhtml document into a pdf, the css stylesheets and images should be referenced as local resources. 
-This is done automagically during the pdf generation so there is no need to touch anything:
+While converting the xhtml document into a pdf, the css stylesheets and images should be referenced with absolute URLs(either local or remote) or Flying Saucer will not be able to access them. 
+If there is no asset host defined, it will set automatically during the pdf generation so the parser can access the requested resources:
 
 View rendered in the browser:
 
-    <%= stylesheet_link_tag("styles.css", :media => "screen,print") %>
-    #<link href="/stylesheets/styles.css?1228586784" media="screen,print" rel="stylesheet" type="text/css" />
+    <%= stylesheet_link_tag("styles.css") %>
+    #<link href="/stylesheets/styles.css?1228586784" media="screen" rel="stylesheet" type="text/css" />
 
 
     <%= image_tag("rails.png") %>
@@ -75,19 +76,18 @@ View rendered in the browser:
   
 View rendered as pdf:
 
-    <%= stylesheet_link_tag("styles.css", :media => "screen,print") %>
-    #<link href="file:///Users/dagi3d/www/acts_as_flying_saucer/public/stylesheets/styles.css" media="screen,print" rel="stylesheet" type="text/css" />
+    <%= stylesheet_link_tag("styles.css") %>
+    #<link href="http://localhost:3000/stylesheets/styles.css" media="print" rel="stylesheet" type="text/css" />
 
 
     <%= image_tag("rails.png") %>
-    # <img alt="Rails" src="file:///Users/dagi3d/www/acts_as_flying_saucer/public//images/rails.png" />
+    # <img alt="Rails" src="http://localhost:3000/images/rails.png" />
   
+The stylesheet media type will be set to 'print' if none was given(otherwise it would not be parsed)
+
 If you need to distinguish if the view is being rendered in the browser or as a pdf, you can use the @pdf\_mode variable, whose value will be set to :create
 when generating the pdf version
 
-*IMPORTANT:*
-
-You have to specify the print media for your styles in order to render the view correctly when generating the pdf document. 
   
 Configuration
 -------------
