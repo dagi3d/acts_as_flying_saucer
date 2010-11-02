@@ -12,6 +12,9 @@ Grab the last version from Github:
 
     ./script/plugin install git://github.com/dagi3d/acts_as_flying_saucer.git
 
+Or for Rails 3.X:
+    rails plugin install git://github.com/dagi3d/acts_as_flying_saucer.git
+
 
 Requirements
 ------------
@@ -76,7 +79,7 @@ View rendered in the browser:
   
 View rendered as pdf:
 
-    <%= stylesheet_link_tag("styles.css") %>
+    <%= print_stylesheet_link_tag("styles.css") %> (also rendered in browser when running rails 3)
     #<link href="http://localhost:3000/stylesheets/styles.css" media="print" rel="stylesheet" type="text/css" />
 
 
